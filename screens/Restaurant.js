@@ -4,13 +4,14 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { urlFor } from "../sanity";
 import {
   ArrowLeftIcon,
-  ChevronDoubleRightIcon,
+  ChevronRightIcon,
   StarIcon,
 } from "react-native-heroicons/solid";
 import {
   MapPinIcon,
   QuestionMarkCircleIcon,
 } from "react-native-heroicons/outline";
+import DishRow from "../components/DishRow";
 
 const Restaurant = () => {
   const {
@@ -72,8 +73,24 @@ const Restaurant = () => {
           <Text className="pl-2 flex-1 text-md font-bold">
             Have a food allergy?
           </Text>
-          <ChevronDoubleRightIcon size={20} color="#00BBCC" />
+          <ChevronRightIcon size={20} color="#00BBCC" />
         </TouchableOpacity>
+      </View>
+
+      <View>
+        <Text className="text-xl mb-3 font-bold pt-6 px-4">Menu</Text>
+        <View>
+          {dishes.map((dish) => (
+            <DishRow
+              key={dish._id}
+              id={dish._id}
+              name={dish.name}
+              description={dish.short_description}
+              price={dish.price}
+              image={dish.image}
+            />
+          ))}
+        </View>
       </View>
     </ScrollView>
   );
